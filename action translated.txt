@@ -1,0 +1,43 @@
+0XXXXXXX YYYYYYYY ;memory[XXXXXXX+offset]=YYYYYYYY
+1XXXXXXX ????YYYY ;memory[XXXXXXX+offset]=YYYY
+2XXXXXXX ??????YY ;memory[XXXXXXX+offset]=YY
+
+3XXXXXXX YYYYYYYY ;if(memory[XXXXXXX||offset]<YYYYYYYY)
+4XXXXXXX YYYYYYYY ;if(memory[XXXXXXX||offset]>YYYYYYYY)
+5XXXXXXX YYYYYYYY ;if(memory[XXXXXXX||offset]==YYYYYYYY)
+6XXXXXXX YYYYYYYY ;if(memory[XXXXXXX||offset]!=YYYYYYYY)
+
+7XXXXXXX ZZZZYYYY ;if(memory[(XXXXXXX||offset)&(!ZZZZ)]<YYYY)
+8XXXXXXX ZZZZYYYY ;if(memory[(XXXXXXX||offset)&(!ZZZZ)]>YYYY)
+9XXXXXXX ZZZZYYYY ;if(memory[(XXXXXXX||offset)&(!ZZZZ)]==YYYY)
+AXXXXXXX ZZZZYYYY ;if(memory[(XXXXXXX||offset)&(!ZZZZ)]!=YYYY)
+
+BXXXXXXX ???????? ;offset=memory[XXXXXXX+offset]
+
+C??????? NNNNNNNN ;for(int i=0; i<NNNNNNNN; i++)
+
+D0?????? ???????? ;end-if
+D1?????? ???????? ;end-repeat
+D2?????? ???????? ;end-everything
+
+D3?????? YYYYYYYY ;offset=YYYYYYYY
+D4?????? YYYYYYYY ;stored+=YYYYYYYY
+D5?????? YYYYYYYY ;stored=YYYYYYYY
+
+D6?????? YYYYYYYY ;memory[YYYYYYYY+offset]=stored; offset+=4
+D7?????? YYYYYYYY ;memory[YYYYYYYY+offset]=stored&FFFF; offset+=2
+D8?????? YYYYYYYY ;memory[YYYYYYYY+offset]=stored&FF; offset++
+
+D9?????? YYYYYYYY ;stored=memory[YYYYYYYY+offset]
+DA?????? YYYYYYYY ;stored=memory[YYYYYYYY+offset]&FFFF
+DB?????? YYYYYYYY ;stored=memory[YYYYYYYY+offset]&FF
+DC?????? YYYYYYYY ;offset+=YYYYYYYY
+
+EXXXXXXX NNNNNNNN ;for(int i=0; i<NNNNNNNN; i++){
+VVVVVVVV VVVVVVVV   ;memory[XXXXXXXX+offset]=VVVVVVVV[i]
+*((NNNNNNNN+7)/8)   ;XXXXXXX+=4}
+
+FXXXXXXX NNNNNNNN ;for(int i=0; i<NNNNNNNN; i++){
+                    ;memory[XXXXXXX]=memory[offset]
+                    ;XXXXXXXX++
+                    ;offset++}
